@@ -15,7 +15,7 @@ export const getOauth = (params) => {
 //소셜 로그인은 바로바로 요청
 export const getOauthQuery = (params) => {
   return queryOptions({
-    queryKey: ["authenticate-user"],
+    queryKey: ["oauth"],
     queryFn: () => getOauth(params),
     staleTime: 0,
     gcTime: 0,

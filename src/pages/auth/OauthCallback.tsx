@@ -3,6 +3,7 @@
 import { useNavigate, useSearchParams } from "react-router";
 import { useGetOauth } from "./api/get-oauth";
 import { useEffect } from "react";
+import { getAccessToken, saveTokens } from "@/lib/authSerivices";
 
 const OauthCallback = () => {
   console.log("여기에 도착");
@@ -18,6 +19,12 @@ const OauthCallback = () => {
 
   useEffect(() => {
     if (isSuccess) {
+      //   console.log(data);
+      const token = data.headers["authorization"].replace("Bearer ", "");
+
+      // header로 받아오 accesstoken저장하기
+
+      saveTokens(token);
       navigate("/", { replace: true });
     }
   }, [data]);
