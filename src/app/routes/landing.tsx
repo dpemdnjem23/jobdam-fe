@@ -5,6 +5,7 @@ import LandingTopImage from "./components/landingTopImage";
 import LandingCard from "./components/landingCard";
 import LandingExplain from "./components/landingExplain";
 import End from "./components/end";
+import SelectSchool from "./selectschool";
 
 function Apps() {
   return (
@@ -17,9 +18,8 @@ function Apps() {
         <div
           className="
         bg-gradient-round rounded-full
-        absolute   z-1 h-[2400px] w-[1980px] bottom-[57%] "
+        absolute   z-1 h-[4000px] w-[1980px] bottom-[55%] "
         ></div>
-
         {/* 랜딩 페이지 전체 */}
         <div className="    ">
           {/* 랜딩 페이지 배경 넣기  */}
@@ -45,6 +45,7 @@ function Apps() {
               <LandingExplain></LandingExplain>
             </div>
           </div>
+          <SelectSchool></SelectSchool>
 
           {/* 서비스 이용 안내 및 마지막부분에 시작하기 넣기(로그인, 면접하러가기) */}
         </div>

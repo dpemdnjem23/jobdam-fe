@@ -24,6 +24,8 @@ import LoadingGradient from "@/components/ui/spinner/loadingSpinner";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
 import { setIsLogin } from "@/store/slices/uistate";
+import SelectSchool from "@/app/routes/selectschool";
+import { translateDepartment } from "@/constants/openaiTransalte";
 
 const ProfilePost = () => {
   const [loading, isLoading] = React.useState<boolean>(false);
@@ -45,6 +47,8 @@ const ProfilePost = () => {
       educationLevel: "",
       educationStatus: "",
       targetCompanySize: "",
+      university: "",
+      major: "",
     },
   });
   const initializedRef = React.useRef(false);
@@ -116,6 +120,7 @@ const ProfilePost = () => {
   };
   const data2 = form.getValues("jobDetailCode");
   console.log(data2);
+  translateDepartment("경영학과");
   return (
     <Form
       className="space-y-[20px]"
@@ -249,6 +254,8 @@ const ProfilePost = () => {
             <Input className="w-[142px] "></Input> */}
             </div>
           </div>
+
+          <SelectSchool control={control} name="university"></SelectSchool>
 
           <div className=" items-center  flex flex-row ">
             <Label className="w-[143px] text-[20px] font-semibold">
