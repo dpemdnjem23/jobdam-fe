@@ -24,8 +24,6 @@ import LoadingGradient from "@/components/ui/spinner/loadingSpinner";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
 import { setIsLogin } from "@/store/slices/uistate";
-import SelectSchool from "@/app/routes/selectschool";
-import { translateDepartment } from "@/constants/openaiTransalte";
 
 const ProfilePost = () => {
   const [loading, isLoading] = React.useState<boolean>(false);
@@ -120,7 +118,7 @@ const ProfilePost = () => {
   };
   const data2 = form.getValues("jobDetailCode");
   console.log(data2);
-  translateDepartment("경영학과");
+  // translateDepartment("경영학과");
   return (
     <Form
       className="space-y-[20px]"
