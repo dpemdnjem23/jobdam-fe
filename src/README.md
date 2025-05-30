@@ -2,6 +2,10 @@
 
 # 기술 스택
 
+## react-pdf
+
+pdf를 view할수있게 해주는 라이브러리
+
 ## zod
 
 스키마 선언 및 유효성 검사 라이브러리이다. typescript와 함께쓰는 이유는 typescript의 경우 컴파일 단계에서 검사하기때문에 런타임 단계에서의 타입에러는 어쩔수가 없다. 런타임 단계에선 이미 js가 동작하고 있기때문이다.
@@ -57,49 +61,39 @@ https://www.radix-ui.com/
 
 ## tanstack query
 
-클라이언트에서 useState, redux 등에 axios 를 이용해 데이터를 가져와서 저장해서 사용해왔는데 서버 상태 관리 라이브러리로 이제는 데이터들을 가져올때 tanstack query를 통해 가져와서 관리를하게된다. 클라이언트 와 서버 데이터 상태를 분리해서 관리한다.
+클라이언트에서 useState, redux 등에 axios 를 이용해 데이터를 가져와서 저장해서 사용해왔는데 서버 상태 관리 라이브러리로 이제는 데이터들을 가져올때 tanstack query를 통해 가져와서 관리를하게된다. 클라이언트 와 서버 데이터 상태를 분리해서 관리한다. 이를통해 서버에서 데이터를 가져와서 그것만으로 관리가 가능하다. ex) 로그인 상태관리 할때 클라리언트 상태관리가 아니라 query만으로 가능하다.
 
 https://tanstack.com/
 
 # 폴더구조
 
+## src/app
+
+폴더의 구조를 담당한다 여기서 메인 폴더 시작점, router들을 담당하고있고, router 파일에서 routes 폴더에있는 파일들을 연결한다.
+
+provider파일은 파일의 가장 최상단으로 여기에서 error 처리, router처리 등 기본적인 셋팅을 하고있다.
+
 ## src/components
 
-컴포넌트들을 모아둔다.
+컴포넌트들을 모아둔것 -> ui컴포넌트 , 로딩스피너, 헤더 에러 등 공통적이고 기본적으로 사용되는것들을 모아두었다.
 
 ## src/lib
 
-api-client - axios interceptor로 요청들을 가로채 응답값 리턴
+api-client는 axios interceptor를 이용한 가로채기로 axios의 공통적 설계 를 하였다. -> 토큰인증 자동, 401에러시 refrehs재발급
 
-auth api + schema 들이 담겨있음 schema란 데이터의 형태 및 구조라고 할 수 있다.
+auth에는 인증, 인가 관려해서 담아두었다..
 
-```js
-//schema
-const Man = z.object({
-  name: z.string(),
-  height: z.number(),
-  age: z.number(),
-  phoneNum: z.string(),
-  homePhoneNum: z.string().optional(),
-  isCompletedMilitaryService: z.boolean(),
-});
-//api
-const getUser = async (): Promise<User> => {
-  const response = await api.get('/auth/me');
+## src/pages
 
-  return response.data;
-};
-```
-
-authorization 인가
+각각의 페이지들이 담겨져있고, 그페이지들의 컴포넌트, api를 폴더로 만들어 분리해두었다. auth부분은 따로 구성해두었기때문에 제외
 
 ## src/types
 
-api.ts
-
-타입들을 모아두는 함수.
+타입들을 모아두는곳. 여기서 정의를 해도되고 페이지안에 직접 놓고 사용해도된다. 많이 사용, 자주 사용하는것들은 모아두는게 편하다.
 
 ## src/utils
+
+유틸, 기능 함수들을 모아두는 곳
 
 cn.ts
 
@@ -108,6 +102,7 @@ import { type ClassValue, clsx } from 'clsx';
 
 export function cn(...inputs: ClassValue[]) {
   return clsx(inputs);
+
 
 }
 
@@ -123,3 +118,19 @@ export function cn(...inputs: ClassValue[]) {
 여러 CSS 클래스 이름들을 조건에 따라 조합할 수 있게 도와주는 유틸 함수
 
 조건부로 클래스명을 다룰일이 많은데 조건부 클래스 네임을 통합할수 있도록. -> 즉, cn을 사용하면 모두가 같은 규칙을 따른다.
+
+## src/store
+
+redux 관련 함수들을 모아두는곳으로 redux 사용시에 작성
+
+## src/services
+
+hook 함수들을 모아둔다 use~
+
+## src/constants
+
+json 파일이나 관련 상수들을 모아두는곳(이용 약관 포함)
+
+## src/config
+
+paths 경로 함수를 작성한곳으로 경로들을 모아둔다.
