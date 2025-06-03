@@ -42,7 +42,7 @@ jobdam은 이들에게 면접에 필요한 서비스를 제공합니다._
 
 ## 아키텍쳐
 
-![JobDam](public/system.svg)
+![Image](https://github.com/user-attachments/assets/a85a65cb-37d0-4aea-a84d-8abf1b292a38)
 
 ## 주요기능
 
